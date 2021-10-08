@@ -5,9 +5,9 @@ import java.util.List;
 public interface DAO<T> {
 	
 	List<T> getList();
-    T findById(Long id);
+    T findById(int id);
     void insert(T vo);
     void update(T vo);
-    void delete(Long id);
+    void delete(int id);
 
 }

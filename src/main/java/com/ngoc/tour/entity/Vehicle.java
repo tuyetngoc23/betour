@@ -1,15 +1,20 @@
 package com.ngoc.tour.entity;
 
-import lombok.AllArgsConstructor;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
 public class Vehicle {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String name;
+	@Column(name = "name")
+	private String ten;
 
 }

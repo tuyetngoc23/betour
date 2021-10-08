@@ -1,41 +1,40 @@
 package com.ngoc.tour.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ngoc.tour.entity.Tour;
+import com.ngoc.tour.entity.Hotel;
 import com.ngoc.tour.repository.DAO;
-import com.ngoc.tour.repository.TourRepository;
-
-
+import com.ngoc.tour.repository.HotelRepository;
 
 @Service
-public class TourService implements DAO<Tour>{
+public class HotelService implements DAO<Hotel>{
 	
 	@Autowired
-	private TourRepository tourRepository;
+	private HotelRepository hotelRepository;
 
 	@Override
-	public List<Tour> getList() {
-		
-		return tourRepository.findAll();
-	}
-
-	@Override
-	public Tour findById(int id) {
+	public List<Hotel> getList() {
 		// TODO Auto-generated method stub
-		return tourRepository.getById(id);
+		return hotelRepository.findAll();
 	}
 
 	@Override
-	public void insert(Tour vo) {
+	public Hotel findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insert(Hotel vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(Tour vo) {
+	public void update(Hotel vo) {
 		// TODO Auto-generated method stub
 		
 	}

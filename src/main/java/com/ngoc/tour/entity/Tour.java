@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -25,7 +27,75 @@ public class Tour implements Serializable {
 	private int max_amount;
 	private Date start_day;
 	private Date end_day;
+	private String content;
+	private String note;
+	private String image;
+	private boolean state;
 	
+	@ManyToOne
+	@JoinColumn(name = "location_go")
+	private Department department;
+	
+	@ManyToOne
+	@JoinColumn(name = "cattour_id")
+	private CatTour cattour;
+	
+	@ManyToOne
+	@JoinColumn(name = "hotel_id")
+	private Hotel hotel;
+	
+	@ManyToOne
+	@JoinColumn(name = "vehicle_id")
+	private Vehicle vehicle;
+	
+	public CatTour getCattour() {
+		return cattour;
+	}
+	public void setCattour(CatTour cattour) {
+		this.cattour = cattour;
+	}
+	public Hotel getHotel() {
+		return hotel;
+	}
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public boolean isState() {
+		return state;
+	}
+	public void setState(boolean state) {
+		this.state = state;
+	}
 	public Tour() {
 		super();
 	}

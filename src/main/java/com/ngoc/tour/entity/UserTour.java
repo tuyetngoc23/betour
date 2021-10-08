@@ -2,16 +2,22 @@ package com.ngoc.tour.entity;
 
 import java.util.Date;
 
-import lombok.AllArgsConstructor;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
 public class UserTour {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String username;
 	private String passwd;
@@ -24,6 +30,8 @@ public class UserTour {
 	private int state;
 	
 
+	@ManyToOne
+	@JoinColumn(name = "user_role")
 	private UserRole user_role;
 
 }
