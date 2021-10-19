@@ -17,7 +17,6 @@ import com.ngoc.tour.service.BlogService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/blog")
 public class BlogController {
 	
 	@Autowired
@@ -25,20 +24,20 @@ public class BlogController {
 	@Autowired
 	private BlogRepository blogRepository;
 
-	@GetMapping({"", "/"})
+	@GetMapping({"/blog", "/blog/"})
 	public ResponseEntity<?> getListBlog(){
 		List<Blog> blogList = blogService.getList();
 		
 		return ResponseEntity.ok(blogList);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/blog/{id}")
 	public ResponseEntity<?> getBlog(@PathVariable("id") int id){
 		Blog blog = blogService.findById(id);
 		
 		return ResponseEntity.ok(blog);
 	}
-	@GetMapping("/comment/{id}")
+	@GetMapping("/blog/comment/{id}")
 	public ResponseEntity<?> getCommentList(@PathVariable("id") int id){
 		List<Comment> commentList = blogRepository.getCommentList(id);
 		
