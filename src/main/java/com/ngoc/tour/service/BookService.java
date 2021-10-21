@@ -30,7 +30,7 @@ public class BookService implements DAO<Book>{
 	@Override
 	public void insert(Book vo) {
 		// TODO Auto-generated method stub
-		bookRepository.save(vo);
+		bookRepository.saveAndFlush(vo);
 	}
 
 	@Override
