@@ -43,7 +43,7 @@ public class TourService implements DAO<Tour>{
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		tourRepository.deleteById(id);
 	}
 
 }

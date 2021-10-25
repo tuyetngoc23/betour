@@ -30,7 +30,7 @@ public class UserService implements DAO<UserTour>, UserDetailsService{
 	@Override
 	public UserTour findById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return userRepository.getById(id);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class UserService implements DAO<UserTour>, UserDetailsService{
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		userRepository.deleteUser(id);
 	}
 
 	@Override

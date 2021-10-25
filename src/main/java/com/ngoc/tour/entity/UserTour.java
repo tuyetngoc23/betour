@@ -27,7 +27,7 @@ public class UserTour {
 	private String address;
 	private String email;
 	private String avatar;
-	private int state;
+	private boolean state;
 	
 
 	@ManyToOne

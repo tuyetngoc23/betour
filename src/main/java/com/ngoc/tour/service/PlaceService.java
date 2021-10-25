@@ -6,43 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ngoc.tour.entity.Place;
-import com.ngoc.tour.entity.TourPlace;
 import com.ngoc.tour.repository.DAO;
-import com.ngoc.tour.repository.TourPlaceRepository;
-import com.ngoc.tour.repository.TourRepository;
+import com.ngoc.tour.repository.PlaceRepository;
 
 @Service
-public class TourPlaceService implements DAO<TourPlace> {
-	
+public class PlaceService implements DAO<Place>{
 	
 	@Autowired
-	private TourPlaceRepository tourPlaceRepository;
-	
-	public List<Place> getListByTourID(int id) {
+	private PlaceRepository placeRepository;
+
+	@Override
+	public List<Place> getList() {
 		// TODO Auto-generated method stub
-		return tourPlaceRepository.listByTourId(id);
+		return placeRepository.findAll();
 	}
 
 	@Override
-	public List<TourPlace> getList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TourPlace findById(int id) {
+	public Place findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insert(TourPlace vo) {
+	public void insert(Place vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(TourPlace vo) {
+	public void update(Place vo) {
 		// TODO Auto-generated method stub
 		
 	}

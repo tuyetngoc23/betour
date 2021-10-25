@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +35,7 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
-	
+	//them 1 user
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
 	@ResponseBody
 	public void insert(@ModelAttribute UserTour vo, @ModelAttribute("file") MultipartFile file) throws IOException {
@@ -66,7 +67,7 @@ public class UserController {
 		vo.setAvatar(originalName);
 		userService.insert(vo);
 	}
-	
+	//check login
 	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
 	public ResponseEntity<?> login(@RequestParam(name="username", defaultValue = "") String username, 
 									@RequestParam(name="password", defaultValue = "") String passwd){
@@ -80,17 +81,30 @@ public class UserController {
 		}
 		
 	}
-	
+	//lay 1 user theo username
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public ResponseEntity<?> getUser(@RequestParam(name="username", defaultValue = "") String username){
 		UserTour user = userRepository.findByUserName(username);
 		return ResponseEntity.ok(user);
 	}
+	
+	//lay user theo id
+	
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getUserById(@PathVariable("id") int id){
+		return ResponseEntity.ok(userService.findById(id));
+	}
+	//lay list user
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
 	public ResponseEntity<?> getListUser(){
 		List<UserTour> getList = userService.getList();
 		return ResponseEntity.ok(getList);
 	}
-	
+	//update user
+	@RequestMapping(value = "/user/delete/{id}", method = RequestMethod.POST)
+	public void deleteUser(@PathVariable("id") int id){
+		System.out.println(id);
+		userService.delete(id);
+	}
 	
 }

@@ -6,8 +6,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.ngoc.tour.entity.Place;
 import com.ngoc.tour.entity.Province;
 import com.ngoc.tour.entity.Tour;
 import com.ngoc.tour.entity.TourPlace;
@@ -25,4 +27,6 @@ public interface TourPlaceRepository extends JpaRepository<TourPlace, Integer> {
 	List<Tour> findDistinctListTour(int cat_id, int prov_id, Date date, int departure, int ks, int vehicle,
 									BigDecimal timgiatu, BigDecimal timgiaden);
 	
+	@Query("SELECT p FROM TourPlace tp, Place p WHERE tp.tour.id =:tour_id AND tp.place.id = p.id")
+	List<Place> listByTourId(@Param(value = "tour_id") int tour_id);
 }
