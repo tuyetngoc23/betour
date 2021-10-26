@@ -31,13 +31,13 @@ public class TourService implements DAO<Tour>{
 	@Override
 	public void insert(Tour vo) {
 		// TODO Auto-generated method stub
-		
+		tourRepository.saveAndFlush(vo);
 	}
 
 	@Override
 	public void update(Tour vo) {
 		// TODO Auto-generated method stub
-		
+		tourRepository.save(vo);
 	}
 
 	@Override

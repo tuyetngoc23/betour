@@ -1,6 +1,10 @@
 package com.ngoc.tour.controller;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ngoc.tour.entity.Tour;
 import com.ngoc.tour.entity.TourPlace;
@@ -85,5 +91,41 @@ public class TourController {
 	@PostMapping("/delete/{id}")
 	public void delete(@PathVariable int id) {
 		tourService.delete(id);
+	}
+	 
+	@PostMapping("/update")
+	public void update(@ModelAttribute Tour tour) {
+		tourService.update(tour);
+	}
+	
+	@PostMapping("/insert")
+	public void insert(@ModelAttribute Tour tour, @ModelAttribute("file") MultipartFile file) throws IOException {
+		if (file == null) {
+			throw new RuntimeException("You must select the a file for uploading");
+		}
+		File f = new File("D:\\HK9\\DAN\\fetour\\public\\asset\\images\\" + file.getOriginalFilename());
+		InputStream inputStream = file.getInputStream();
+		@SuppressWarnings("resource")
+		FileOutputStream outputStream = new FileOutputStream(f);
+		int read;
+		byte[] bytes = new byte[1024];
+		while ((read = inputStream.read(bytes)) != -1) {
+			outputStream.write(bytes, 0, read);
+		}
+		String originalName = file.getOriginalFilename();
+		String name = file.getName();
+		String contentType = file.getContentType();
+		long size = file.getSize();
+		System.out.println("inputStream: " + inputStream);
+		System.out.println("originalName: " + originalName);
+		System.out.println("name: " + name);
+		System.out.println("contentType: " + contentType);
+		System.out.println("size: " + size);
+//		System.out.println("vehicle" + tour.getVehicle().getId());
+//		System.out.println("cattour" + tour.getCattour().getId());
+		
+		tour.setImage(originalName);
+		
+		tourService.insert(tour);
 	}
 }
