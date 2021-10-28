@@ -24,25 +24,25 @@ public class HotelService implements DAO<Hotel>{
 	@Override
 	public Hotel findById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return hotelRepository.getById(id);
 	}
 
 	@Override
 	public void insert(Hotel vo) {
 		// TODO Auto-generated method stub
-		
+		hotelRepository.save(vo);
 	}
 
 	@Override
 	public void update(Hotel vo) {
 		// TODO Auto-generated method stub
-		
+		hotelRepository.save(vo);
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		hotelRepository.deleteById(id);
 	}
 
 }

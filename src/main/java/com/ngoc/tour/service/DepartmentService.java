@@ -24,25 +24,25 @@ public class DepartmentService implements DAO<Department>{
 	@Override
 	public Department findById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return departmentRepository.getById(id);
 	}
 
 	@Override
 	public void insert(Department vo) {
 		// TODO Auto-generated method stub
-		
+		departmentRepository.save(vo);
 	}
 
 	@Override
 	public void update(Department vo) {
 		// TODO Auto-generated method stub
-		
+		departmentRepository.save(vo);
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		departmentRepository.deleteById(id);
 	}
 
 }

@@ -24,25 +24,25 @@ public class VehicleService implements DAO<Vehicle>{
 	@Override
 	public Vehicle findById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return vehicleRepository.getById(id);
 	}
 
 	@Override
 	public void insert(Vehicle vo) {
 		// TODO Auto-generated method stub
-		
+		vehicleRepository.save(vo);
 	}
 
 	@Override
 	public void update(Vehicle vo) {
 		// TODO Auto-generated method stub
-		
+		vehicleRepository.save(vo);
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		vehicleRepository.deleteById(id);
 	}
 
 }

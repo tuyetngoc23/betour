@@ -81,9 +81,9 @@ public class TourController {
 		return ResponseEntity.ok(tourPlaceList);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<?> getTour(@PathVariable int id) {
-		Tour tour = tourService.findById(id);
+	@GetMapping("/{tourId}")
+	public ResponseEntity<?> getTour(@PathVariable int tourId) {
+		Tour tour = tourService.findById(tourId);
 		
 		return ResponseEntity.ok(tour);
 	} 
@@ -94,7 +94,30 @@ public class TourController {
 	}
 	 
 	@PostMapping("/update")
-	public void update(@ModelAttribute Tour tour) {
+	public void update(@ModelAttribute Tour tour, @ModelAttribute("file") MultipartFile file) throws IOException {
+		if (file == null) {
+			throw new RuntimeException("You must select the a file for uploading");
+		}
+		File f = new File("D:\\HK9\\DAN\\fetour\\public\\asset\\images\\" + file.getOriginalFilename());
+		InputStream inputStream = file.getInputStream();
+		@SuppressWarnings("resource")
+		FileOutputStream outputStream = new FileOutputStream(f);
+		int read;
+		byte[] bytes = new byte[1024];
+		while ((read = inputStream.read(bytes)) != -1) {
+			outputStream.write(bytes, 0, read);
+		}
+		String originalName = file.getOriginalFilename();
+		String name = file.getName();
+		String contentType = file.getContentType();
+		long size = file.getSize();
+		System.out.println("inputStream: " + inputStream);
+		System.out.println("originalName: " + originalName);
+		System.out.println("name: " + name);
+		System.out.println("contentType: " + contentType);
+		System.out.println("size: " + size);
+		
+		tour.setImage(originalName);
 		tourService.update(tour);
 	}
 	
@@ -121,8 +144,6 @@ public class TourController {
 		System.out.println("name: " + name);
 		System.out.println("contentType: " + contentType);
 		System.out.println("size: " + size);
-//		System.out.println("vehicle" + tour.getVehicle().getId());
-//		System.out.println("cattour" + tour.getCattour().getId());
 		
 		tour.setImage(originalName);
 		

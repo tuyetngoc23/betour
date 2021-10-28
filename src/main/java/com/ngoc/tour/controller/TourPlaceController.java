@@ -21,10 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ngoc.tour.entity.Place;
 import com.ngoc.tour.entity.Province;
-import com.ngoc.tour.entity.Tour;
 import com.ngoc.tour.entity.TourPlace;
 import com.ngoc.tour.repository.TourPlaceRepository;
-import com.ngoc.tour.repository.TourRepository;
 import com.ngoc.tour.service.TourPlaceService;
 import com.ngoc.tour.service.TourService;
 
@@ -57,5 +55,10 @@ public class TourPlaceController {
 	public void insert(@ModelAttribute TourPlace tp) {
 //		
 		tourPlaceService.insert(tp);
+	}
+	
+	@PostMapping("/tour/update")
+	public void update(@ModelAttribute TourPlace tp) {
+		tourPlaceService.update(tp);
 	}
 }

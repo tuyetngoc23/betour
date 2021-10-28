@@ -29,4 +29,6 @@ public interface TourPlaceRepository extends JpaRepository<TourPlace, Integer> {
 	
 	@Query("SELECT p FROM TourPlace tp, Place p WHERE tp.tour.id =:tour_id AND tp.place.id = p.id")
 	List<Place> listByTourId(@Param(value = "tour_id") int tour_id);
+	
+	
 }

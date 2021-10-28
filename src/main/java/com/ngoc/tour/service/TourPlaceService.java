@@ -44,7 +44,7 @@ public class TourPlaceService implements DAO<TourPlace> {
 	@Override
 	public void update(TourPlace vo) {
 		// TODO Auto-generated method stub
-		
+		tourPlaceRepository.save(vo);
 	}
 
 	@Override

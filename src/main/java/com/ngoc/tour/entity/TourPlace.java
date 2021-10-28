@@ -27,7 +27,6 @@ public class TourPlace {
 	
 	
 	@ManyToOne
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 	@JoinColumn(name ="tour_id")
 	private Tour tour;
 

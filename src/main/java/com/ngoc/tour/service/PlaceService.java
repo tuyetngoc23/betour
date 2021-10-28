@@ -24,25 +24,25 @@ public class PlaceService implements DAO<Place>{
 	@Override
 	public Place findById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return placeRepository.getById(id);
 	}
 
 	@Override
 	public void insert(Place vo) {
 		// TODO Auto-generated method stub
-		
+		placeRepository.save(vo);
 	}
 
 	@Override
 	public void update(Place vo) {
 		// TODO Auto-generated method stub
-		
+		placeRepository.save(vo);
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		placeRepository.deleteById(id);
 	}
 
 }
