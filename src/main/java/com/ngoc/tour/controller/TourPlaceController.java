@@ -61,4 +61,9 @@ public class TourPlaceController {
 	public void update(@ModelAttribute TourPlace tp) {
 		tourPlaceService.update(tp);
 	}
+	
+	@PostMapping("/tour/delete/{id}")
+	public void deleteByTourId(@PathVariable int id) {
+		tourPlaceService.delete(id);
+	}
 }

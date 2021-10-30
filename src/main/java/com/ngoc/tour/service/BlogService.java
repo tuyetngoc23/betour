@@ -30,19 +30,19 @@ public class BlogService implements DAO<Blog>{
 	@Override
 	public void insert(Blog vo) {
 		// TODO Auto-generated method stub
-		
+		blogRepository.save(vo);
 	}
 
 	@Override
 	public void update(Blog vo) {
 		// TODO Auto-generated method stub
-		
+		blogRepository.save(vo);
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		blogRepository.deleteById(id);
 	}
 
 }

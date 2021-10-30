@@ -50,7 +50,7 @@ public class TourPlaceService implements DAO<TourPlace> {
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		tourPlaceRepository.deleteByTourId(id);
 	}
 
 }

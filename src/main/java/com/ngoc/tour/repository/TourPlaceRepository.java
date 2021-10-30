@@ -5,9 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ngoc.tour.entity.Place;
 import com.ngoc.tour.entity.Province;
@@ -29,6 +31,11 @@ public interface TourPlaceRepository extends JpaRepository<TourPlace, Integer> {
 	
 	@Query("SELECT p FROM TourPlace tp, Place p WHERE tp.tour.id =:tour_id AND tp.place.id = p.id")
 	List<Place> listByTourId(@Param(value = "tour_id") int tour_id);
+	
+	@Modifying
+	@Transactional
+	@Query("DELETE FROM TourPlace tp WHERE tp.tour.id = :tourId")
+	void deleteByTourId(int tourId);
 	
 	
 }
